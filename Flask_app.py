@@ -3,7 +3,8 @@ from flask import Flask,request,jsonify
 #import joblib , numpy 
 import joblib
 import numpy as np 
-
+#import os for deployment 
+import os 
 
 #create the flask app 
 app=Flask(__name__)
@@ -29,8 +30,9 @@ def predict():
         
         return jsonify({"prediction":float(prediction[0])   })
     except Exception as e: 
-        return jsonify({"error",str(e)})
+        return jsonify({"error" :str(e)})
 
 #run the server
-if __name__ == "__main__" :
-    app.run(debug=True) 
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)

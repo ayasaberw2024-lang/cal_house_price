@@ -66,13 +66,23 @@ ctr +c to stop the app
 
 ## now we can deploy on render 
 1. Push Flask project → GitHub
+### very important change the flask app  befor deployment 
+make the code like this ::: 
+'''
+#run the server
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
+''''''
+
 2. Connect GitHub → Render
+
 3. Render deploys automatically
 4. take the  live URL and then use it with anyfront end u like 
 
 ctrl+C
 git add .
-git commit -m "initial flask api"
+git commit -m "deploying flask api"
 git push
 
 _____________
