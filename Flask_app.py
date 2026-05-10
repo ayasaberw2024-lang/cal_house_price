@@ -11,7 +11,7 @@ from flask_cors import CORS
 
 #create the flask app 
 app=Flask(__name__)
-CORS(app)  # يسمح لأي frontend يتصل بالـ API
+CORS(app, resources={r"/*": {"origins": "*"}})  # يسمح لأي frontend يتصل بالـ API
 
 #load the model 
 model=joblib.load("xgb_model.pkl")

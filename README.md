@@ -103,3 +103,10 @@ it will get u the url for ur porject
 
 ## the urls 
 calhouseprice-production.up.railway.app
+
+test on postman with the url /predict just to make sure 
+u can use these features 
+
+{
+  "features": [8.3, 41, 6.9, 1.0, 322, 2.5, 37.88, -122.23]
+}
