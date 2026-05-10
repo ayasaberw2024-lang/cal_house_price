@@ -64,7 +64,7 @@ ctr +c to stop the app
   "Longitude": -122.23
 }
 
-## now we can deploy on render 
+## now we can deploy on railway
 1. Push Flask project → GitHub
 ### very important change the flask app  befor deployment 
 make the code like this ::: 
@@ -75,7 +75,7 @@ if __name__ == "__main__":
     app.run(host="0.0.0.0", port=port)
 ''''''
 
-2. Connect GitHub → Render
+2. Connect GitHub → railway
 
 3. Render deploys automatically
 4. take the  live URL and then use it with anyfront end u like 
@@ -86,13 +86,20 @@ git commit -m "deploying flask api"
 git push
 
 _____________
-## 4- open render  crete an acc connect it with ur github 
-### 5- Create New Web Service 
-### 6- puplic repo __ put ur repo url 
+## 4- open railway crete an acc connect it with ur github 
+### 5- Deploy 
+### 6- Github repo 
+### 7- choose the repo 
 
-#### build commands : 
-pip install -r requirements.txt 
-start command -->  python Flask_app.py
-
+#### start cmmand commands : 
+use the start command 
+python Flask_app.py
 
 # then deploy 
+
+# after u can go to  project seetings --> nmetworking --> generate puplic domain 
+it will get u the url for ur porject 
+
+
+## the urls 
+calhouseprice-production.up.railway.app
