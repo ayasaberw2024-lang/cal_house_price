@@ -6,5 +6,5 @@ xgboost
 joblib
 streamlit
 flask
-fastapi
-uvicorn
+
+gunicorn

@@ -110,3 +110,5 @@ u can use these features
 {
   "features": [8.3, 41, 6.9, 1.0, 322, 2.5, 37.88, -122.23]
 }
+## for the html 
+installed Live Server By Ritwick Dey
