@@ -95,4 +95,4 @@ Tools: Pandas, NumPy, Matplotlib, Jupyter Notebook
 ---
 👩‍💻 Author
 Aya Saber Omran — Data Scientist & ML Engineer
-![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue)
+![LinkedIn](www.linkedin.com/in/aya-saber-omran)
