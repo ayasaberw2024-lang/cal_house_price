@@ -1,114 +1,98 @@
-# cal_house_price
-
-### 1- create ur notebook --> create a git repo --> create a folder on ur pc and clone the repo --> lunch the vscode from anaconda 
-____________________________
-### 2- create a conda env 
-conda create -n cal_env python=3.10 -y
-or in same project folder 
-conda create -p ./cal_env python=3.10 -y 
-__________________________________
-### 3- activate conda activate ./cal_env
-### 4- create a requirements.txt file 
-### 5- install it using 
-pip install -r requirements.txt 
-
-( u can iew the lib and their versions using the command :  pip list )
-
-### 6-  download the : ( model _ notebook _ scaler if u need it _ features name just to keep the features in the same order _data just to upload it also on git but not needed here since that it's already a built in ds )
-
-__________________________________
-# Deployment 
-
-# 1- create a streamlit UI  and upload on streamlit cloud 
-### 1- create streamlit_app.py 
-### 2- run the streamlit _ app  using this command : 
-streamlit run streamlit_app.py  
-
-test it then press on terminal and 
-ctr +c to stop the app 
-### 3- upload everything on ur repo as streamlit version 
-## but befor u add anything make sure the env is in gitignore   u can add cal_env/ just in case in the #env section 
-
- #### 1- git add .
- #### git status here just to make sure  the files are ready 
- #### 2- git commit -m "Streamlit ML app ready"
- #### 3- git push 
-# 2- now deploy on streamlit cloud 
-  #### 1- create an account using ur git hub acc 
-  #### 2-  New app  --> take the url of ur repo 
-  ### 3-  branch --> main _ main path file should be detected automatically 
-  #### 4- write the name for ur url don't use - not _ 
-  ### 5- after deployment u will find ur app runing and share button then copy the link and put it in ur git hub 
-
- We deployed the Streamlit version for quick demonstration using Streamlit Cloud, and later we will extend the project with Flask and FastAPI for full backend deployment on Render.
- 
-
-
- _________________________________________________________________
- # Deploy with Flask 
-## 1 - create a file called Flask_app.py
-## 2- run the flask app using this command 
- python Flask_app.py
-##  3- test on postman 
-#### open postman --> method = post ____ url = put the url ___ body --> raw= json  __ in the box put the data and make sure to validate it 
-
-###  test on postman using this key values pair
-{
-  "MedInc": 8.3252,
-  "HouseAge": 41,
-  "AveRooms": 6.9841,
-  "AveBedrms": 1.0238,
-  "Population": 322,
-  "AveOccup": 2.55,
-  "Latitude": 37.88,
-  "Longitude": -122.23
-}
-
-## now we can deploy on railway
-1. Push Flask project → GitHub
-### very important change the flask app  befor deployment 
-make the code like this ::: 
-'''
-#run the server
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
-''''''
-
-2. Connect GitHub → railway
-
-3. Render deploys automatically
-4. take the  live URL and then use it with anyfront end u like 
-
-ctrl+C
-git add .
-git commit -m "deploying flask api"
-git push
-
-_____________
-## 4- open railway crete an acc connect it with ur github 
-### 5- Deploy 
-### 6- Github repo 
-### 7- choose the repo 
-
-#### start cmmand commands : 
-use the start command 
-python Flask_app.py
-
-# then deploy 
-
-# after u can go to  project seetings --> nmetworking --> generate puplic domain 
-it will get u the url for ur porject 
-
-
-## the urls 
-calhouseprice-production.up.railway.app
-
-test on postman with the url /predict just to make sure 
-u can use these features 
-
+🏠 California House Price Prediction — End-to-End ML Deployment
+A complete machine learning project that predicts California house prices using the classic California Housing dataset. The project covers the full AI lifecycle: data analysis, model training, evaluation, and production deployment via both Streamlit and Flask REST API.
+---
+🚀 Live Demos
+Deployment	Link
+🎯 Streamlit App	cal-house-price1.streamlit.app
+⚙️ Flask REST API	calhouseprice-production.up.railway.app
+---
+📌 Project Overview
+	
+Type	Regression
+Dataset	California Housing (Scikit-learn built-in)
+Best Model	XGBoost
+Deployment	Streamlit Cloud + Flask API on Railway
+---
+🧠 Models Evaluated
+Model	Notes
+Linear Regression	Baseline
+SVR	Support Vector Regression
+Decision Tree	Simple tree-based model
+Gradient Boosting	Ensemble boosting
+XGBoost	✅ Best performer — selected for deployment
+---
+🗂️ Project Structure
+```
+cal_house_price/
+│
+├── streamlit_app.py       # Interactive prediction UI
+├── Flask_app.py           # REST API for backend deployment
+├── index.html             # Simple frontend to consume the API
+├── xgb_model.pkl          # Trained XGBoost model
+├── features.pkl           # Feature names for input validation
+├── full_housing_data.csv  # Dataset
+├── requirements.txt       # Dependencies
+└── README.md
+```
+---
+⚙️ Deployment Architecture
+```
+User Input
+    │
+    ▼
+Streamlit App ──────────────────► Streamlit Cloud
+    │
+    ▼
+Flask REST API  ─────────────────► Railway (Live)
+    │
+    ▼
+index.html (Local Frontend) ────► Consumes Flask API
+```
+---
+🔌 API Usage
+Endpoint: `POST /predict`
+Request Body:
+```json
 {
   "features": [8.3, 41, 6.9, 1.0, 322, 2.5, 37.88, -122.23]
 }
-## for the html 
-installed Live Server By Ritwick Dey
+```
+Feature Order:
+`MedInc, HouseAge, AveRooms, AveBedrms, Population, AveOccup, Latitude, Longitude`
+Example with curl:
+```bash
+curl -X POST https://calhouseprice-production.up.railway.app/predict \
+  -H "Content-Type: application/json" \
+  -d '{"features": [8.3, 41, 6.9, 1.0, 322, 2.5, 37.88, -122.23]}'
+```
+---
+🛠️ Run Locally
+1. Clone the repo
+```bash
+git clone https://github.com/ayasaberw2024-lang/cal_house_price.git
+cd cal_house_price
+```
+2. Create and activate environment
+```bash
+conda create -n cal_env python=3.10 -y
+conda activate cal_env
+pip install -r requirements.txt
+```
+3. Run Streamlit
+```bash
+streamlit run streamlit_app.py
+```
+4. Run Flask API
+```bash
+python Flask_app.py
+```
+---
+🧰 Tech Stack
+ML: Python, Scikit-learn, XGBoost
+Deployment: Streamlit, Flask, Railway
+Frontend: HTML, JavaScript
+Tools: Pandas, NumPy, Matplotlib, Jupyter Notebook
+---
+👩‍💻 Author
+Aya Saber Omran — Data Scientist & ML Engineer
+![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue)
